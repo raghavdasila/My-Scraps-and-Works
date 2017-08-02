@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="yes"?>
+<mrksDataSet xmlns="http://tempuri.org/mrksDataSet.xsd">
+  <Marks>
+    <RegNo>1234</RegNo>
+    <Maths>121</Maths>
+    <Physics>1213</Physics>
+    <Chemistry>312</Chemistry>
+    <Biology>21</Biology>
+    <Social_x0020_Studies>21</Social_x0020_Studies>
+    <Geography>212</Geography>
+    <Computer_x0020_Science>21</Computer_x0020_Science>
+  </Marks>
+</mrksDataSet>

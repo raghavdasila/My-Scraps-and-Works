@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="yes"?>
+<attendanceDataSet xmlns="http://tempuri.org/attendanceDataSet.xsd">
+  <attendance>
+    <Reg_No>44</Reg_No>
+    <Physics>96</Physics>
+    <Chemistry>96</Chemistry>
+    <Maths>69</Maths>
+    <Biology>69</Biology>
+    <Social_Science>96</Social_Science>
+    <Geography>96</Geography>
+    <Computer_Science>69</Computer_Science>
+  </attendance>
+</attendanceDataSet>

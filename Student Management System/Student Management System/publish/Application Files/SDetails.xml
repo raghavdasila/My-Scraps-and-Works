@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<Database2DataSet xmlns="http://tempuri.org/Database2DataSet.xsd">
+  <Student_x0020_Details>
+    <Name>ararra</Name>
+    <Course>arar</Course>
+    <Dept>arar</Dept>
+    <RegNo>1234</RegNo>
+    <Address>asasf</Address>
+    <Per_x0020_Address>sfasf</Per_x0020_Address>
+    <DOB>2015-10-02T10:50:42+05:30</DOB>
+    <BloodGroup>A-</BloodGroup>
+    <Phone_x0020_Number>12131</Phone_x0020_Number>
+    <FatherName>asasf</FatherName>
+  </Student_x0020_Details>
+</Database2DataSet>

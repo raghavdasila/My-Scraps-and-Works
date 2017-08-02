@@ -1,0 +1,28 @@
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Student Management System.exe.config
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Student Management System.exe
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Student Management System.pdb
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Student Management System.xml
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.Form2.resources
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.Resources.resources
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.vbproj.GenerateResource.Cache
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.exe
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.xml
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.pdb
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.Form1.resources
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Database2.accdb
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.vbprojResolveAssemblyReference.cache
+c:\users\agent rsdg\documents\visual studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.StudDetails.resources
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.MMenu.resources
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\bin\Debug\mrks.accdb
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.Marks.resources
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\bin\Debug\attendance.accdb
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.attendance.resources
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student_Management_System.DB.resources
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Student Management System.exe.manifest
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Student Management System.application
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.exe.manifest
+C:\Users\Agent RSDG\Documents\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.application
+E:\docs2\Visual Studio 2015\Projects\Student Management System\Student Management System\bin\Debug\Student Management System.exe.config
+E:\docs2\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.exe
+E:\docs2\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.xml
+E:\docs2\Visual Studio 2015\Projects\Student Management System\Student Management System\obj\Debug\Student Management System.pdb
