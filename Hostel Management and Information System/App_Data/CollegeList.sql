@@ -1,0 +1,4 @@
+﻿CREATE TABLE CollegeList
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)
