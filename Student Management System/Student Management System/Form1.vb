@@ -1,6 +1,6 @@
 ﻿Public Class Form1
     Private Sub OK_Click(sender As Object, e As EventArgs) Handles OK.Click
-        If PwdBox.Text = "kartik" Then
+        If PwdBox.Text = "raghav" Then
             MMenu.Show()
             Me.Hide()
         Else
