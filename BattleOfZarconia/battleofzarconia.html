@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+<!--
+Developed and progammed by Raghavendra Singh Dasila
+Feel free to reuse, I made it to submit as a lab project :P
+-->
+<head>
+<meta charset="utf-8">
+<title>Battle of Zarconia: The Knight's Charge</title>
+<style>
+	body
+	{
+		background-image:url(res/bg.jpg);
+		background-repeat:no-repeat;
+		background-position:center;
+		background-attachment:fixed;
+		color:rgb(255,255,255);
+		font-family:"Burdeles";
+		background-color:rgb(0,0,0);
+		text-align:center;
+		text-outline:#033;
+		font-size:22px;
+		overflow:hidden;
+	}
+	p
+	{
+		//font-family:"Lithos Pro Regular";
+		font-size:18px;
+	}
+	#HP
+	{font-family:"Burdeles";}
+	#Chp
+	{font-family:"Burdeles";}
+	#score
+	{font-family:"Burdeles";}
+	#EHP
+	{font-family:"Burdeles";}
+	input
+	{
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    color: #000;
+	font-size:24px;
+    font-weight: bold;
+    outline: none;
+	font-family:"Burdeles";
+    cursor: pointer;
+	}
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+	background-image:url(bg.jpg);
+	background-size:cover;
+	padding-left: 0;
+    padding-right: 0;
+    margin-left:0;
+    margin-right: auto;
+    display: block;
+	
+}
+</style>
+</head>
+
+<body>
+<div style="width:100%">
+<div style="float:left;width:80%">
+<script>
+var P1HP,P2HP,P3HP,P4HP;
+var Player;
+var E1,E2;
+var currentPlayer=1;
+var sizeX=window.innerWidth-200;
+var sizeY=window.innerHeight-200;
+var spd=2;
+var castle;
+var arrow_shot=0;
+var A;
+function startGame() {
+	castle = new component(150,178, "res/castle.png", (sizeX)-150,0,"image",1000,0);
+    Player = new component(100,100, "res/P/M.png", 100, sizeY-150,"image",400,50);
+	E1= new component(100,100, "res/E/EA.png", (sizeX)-300, 0,"image",500,10);
+	E2= new component(100,100, "res/E/EB.png", (sizeX)-300, 100,"image",500,5);
+	A= new component(50,50, "res/A/A.png", 0, 0,"image",10,50);
+    myGameArea.start();
+}
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = sizeX;
+        this.canvas.height = sizeY;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[1]);
+        this.interval = setInterval(updateGameArea, 20);
+		window.addEventListener('keydown', function (e) 
+		{
+            myGameArea.key = e.keyCode;
+        })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.key = false;
+        })
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		
+    }
+}
+function component(width, height, color, x, y,type,hp,ap) {
+	this.type=type;
+    this.width = width;
+    this.height = height;
+	this.image=new Image();
+	this.image.src=color;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;
+	this.hp=hp;
+	P1HP=P2HP=P3HP=P4HP=100;
+	currentPlayer=1; 
+	this.ap=ap;   
+	this.isAttack=0;
+    this.update = function() {
+        ctx = myGameArea.context;
+		ctx.drawImage(this.image, this.x, this.y,this.width,this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }    
+}
+function dhide()
+{	for(i=0;i<document.getElementsByClassName('intro').length;i++)
+	{
+		document.getElementsByClassName('intro')[i].style.visibility='hidden';
+	}
+}
+function dshow()
+{
+	for(i=0;i<document.getElementsByClassName('login').length;i++)
+	{
+		document.getElementsByClassName('login')[i].style.visibility='visible';
+	}
+}
+function AI (E)
+{
+	if(E==E2)
+	{
+		if(E.x>Player.x)
+		E.x-=1.3;
+	if(E.x<Player.x)
+		E.x+=1.3;
+	if(E.y>Player.y)
+		E.y-=1.3;
+	if(E.y<Player.y)
+		E.y+=1.3;
+	}else{
+	//E AI
+	if(E.x>Player.x)
+		E.x-=1;
+	if(E.x<Player.x)
+		E.x+=1;
+	if(E.y>Player.y)
+		E.y-=1;
+	if(E.y<Player.y)
+		E.y+=1;
+}}
+function Oupdate(O)
+{
+	O.update();
+	if(O.hp>0){
+	O.update();
+	O.newPos();}
+}
+function E_Detect(E)
+{
+        var myleft = Player.x;
+        var myright = Player.x + (Player.width);
+        var mytop = Player.y;
+        var mybottom = Player.y + (Player.height);
+        var otherleft = E.x;
+        var otherright = E.x + (E.width);
+        var othertop = E.y;
+        var otherbottom = E.y + (E.height);
+        var crash = true;
+        if ((mybottom < othertop)||(mytop > otherbottom)||(myright < otherleft)||(myleft > otherright)) 
+		{
+           crash = false;
+        }
+		if(crash)
+		{
+			E.isAttack=1;
+			attack(E,Player);
+		} 
+}
+function A_Detect(E)
+{
+        var myleft = A.x;
+        var myright = A.x + (A.width);
+        var mytop = A.y;
+        var mybottom = A.y + (A.height);
+        var otherleft = E.x;
+        var otherright = E.x + (E.width);
+        var othertop = E.y;
+        var otherbottom = E.y + (E.height);
+        var crash = true;
+        if ((mybottom < othertop)||(mytop > otherbottom)||(myright < otherleft)||(myleft > otherright)) 
+		{
+           crash = false;
+        }
+		if(crash)
+		{
+			A.speedX=0;
+			A.speedY=0;
+			A.isAttack=1;
+			attack(A,E);
+			A.x=Player.x;
+			A.y=Player.y;
+		} 
+}
+function attack(Attacker,Attacked)
+{
+	Attacked.hp-=Attacker.ap;
+}
+function shoot()
+{
+	if(currentPlayer==1){A.image.src="res/A/A.png";}
+	if(currentPlayer==2){A.image.src="res/A/B.png";}
+	if(currentPlayer==3){A.image.src="res/A/C.png";}
+	if(currentPlayer==4){A.image.src="res/A/D.png";}
+	A.x=Player.x;
+	A.y=Player.y+Player.height/4;
+	A.speedX=Player.speedX*20;
+	A.speedY=Player.speedY*20;
+	arrow_shot=0;
+}
+function updateGameArea() {
+    myGameArea.clear();
+	//updation functions
+	Oupdate(A);
+	castle.update();
+    Oupdate(Player);
+	if(E1.hp>0)
+	Oupdate(E1);
+	if(E2.hp>0)
+	Oupdate(E2); 
+	//key detection
+    if (myGameArea.key && myGameArea.key == 37 && Player.speedX>=-spd) {Player.speedX--;Player.speedY=0; }
+    if (myGameArea.key && myGameArea.key == 39 && Player.speedX<=spd) {Player.speedX++; Player.speedY=0;}
+    if (myGameArea.key && myGameArea.key == 38 && Player.speedY>=-spd) {Player.speedY--; Player.speedX=0;}
+    if (myGameArea.key && myGameArea.key == 40 && Player.speedY<=spd) {Player.speedY++;Player.speedX=0; }
+	if (myGameArea.key && myGameArea.key == 32) {Player.speedX=0; Player.speedY=0;}
+	//attack
+	if (myGameArea.key && myGameArea.key == 81) {Player.isAttack=1; shoot();}
+	if (myGameArea.key && myGameArea.key!=81) {Player.isAttack=0;}
+	//border detection
+	if (Player.x<=Player.width/4) {Player.speedX=1; Player.x++;}
+	if (Player.y<=Player.height/4) {Player.speedY=1; Player.y++;}
+	if (Player.x>=sizeX-(Player.width+Player.width/4)) {Player.speedX=-1; Player.x--;}
+	if (Player.y>=sizeY-(Player.height+Player.height/4)) {Player.speedY=-1; Player.y--;}
+	//player change
+	if( myGameArea.key && myGameArea.key==49 && P1HP>0)
+	{
+			Player.image.src="res/P/M.png";
+			currentPlayer=1;
+	}
+	if( myGameArea.key && myGameArea.key==50 && P2HP>0)
+	{
+			Player.image.src="res/P/N.png";
+			currentPlayer=2;
+	}
+	if( myGameArea.key && myGameArea.key==51 && P3HP>0)
+	{
+			Player.image.src="res/P/A.png";
+			currentPlayer=3;
+	}
+	if( myGameArea.key && myGameArea.key==52 && P4HP>0)
+	{
+			Player.image.src="res/P/K.png";
+			currentPlayer=4;
+	}
+	//Arrow shot
+	if(E1.hp>0)
+	A_Detect(E1);
+	if(E2.hp>0)
+	A_Detect(E2);
+	//Enemy detection
+	if(E1.hp>0)
+	E_Detect(E1);
+	if(E2.hp>0)
+	E_Detect(E2);
+	//AI
+	if(E1.hp>0)
+	AI(E1);
+	if(E2.hp>0)
+	AI(E2);
+	//castle detection and attack
+	A_Detect(castle);
+	if (Player.x>=castle.x-Player.width && Player.y<=castle.y+castle.height)
+	 { 
+	 	 Player.speedX=-1;Player.speedY=0; Player.x--;
+	 }
+	if (Player.y<=castle.height  && Player.x>=castle.x) 
+	{  
+		Player.speedY=1; Player.y++;Player.speedX=0;
+	}
+}
+</script></div>
+<div style="float:right">
+<p id="HP" align="right"></p><p id="Chp" align="right"></p><p id="score"></p><p id="EHP" align="right"></p>
+</div>
+</div style="clear:both">
+<script>
+var s=0;
+this.interval=setInterval(stat_update,20);
+function stat_update(){
+	s++;
+	document.getElementById("HP").innerHTML='Player HP: '+ Player.hp;
+	document.getElementById("Chp").innerHTML='Castle HP: '+castle.hp;
+	document.getElementById("EHP").innerHTML='Enemy HP: '+E1.hp+' '+E2.hp;
+	if(s%100==0){
+	document.getElementById("score").innerHTML='Time :'+s/100;}
+	if(Player.hp<=0)
+	{
+	window.location.replace("lose.html")
+	}
+	if(castle.hp<=0)
+	{	
+	window.location.replace("win.html")
+	}
+}
+</script>
+<div class="intro">
+<h1>Battle of Zarconia</h1>
+    <h2>The Knight's Charge</h2>
+    <p id="GText">The year of 1634. The Northern Zarconian Faction was increasing its oprressive acts against the rest of Zarconia.<br>
+    They recently captured the Riverfall Castle at the border of South Zarconia.
+    <br>Being an isolated desert region with an oasis, this is the perfect operation base.<br>
+    With this, the King summoned the Knight's Templar special unit, The Knight's Charge.<br>
+    You being the commander will have to lead them in battle to recapture the castle and bring forth Justice!<br>
+	</p><p>
+    <b>How to Play</b><br>
+    (Play in fullscreen for best results and reload in fullscreen if game not fullscreen)
+    Use arrow keys to move.Space Bar to stop.<br>
+   	Use Q to shoot Magical orb attack NOTE- You can shoot orb only in the direction you are moving.
+    Magic Orbs can be used as mines if you stand at one place and press Q.<br>
+    Next Magic Orb Attack can only be used once the previous one has hit or miss its target.<br>
+    After use, orb will return to your position providing defence. 
+    <br>Use key '1','2','3','4' to change your player.
+    <br>Capture the Castle. Defeat the evil. Protect Zarconia.
+    <br><input type="button" value="Play" onClick="startGame();dhide();">
+    <br> Made by Raghavendra Singh Dasila...in 3 hours lol
+    </p>
+</div>
+</body>
+</html>
